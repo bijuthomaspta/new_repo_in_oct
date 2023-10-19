@@ -15,7 +15,7 @@ stages:
     jobs:
       - job: First_job
         steps:
-         - bash: echo ${{ variables.ist_variable}}
+         - bash: echo $(variables.ist_variable)
            displayName: first job is success
       - job: Secon_job
         steps:
