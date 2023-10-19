@@ -15,9 +15,9 @@ stages:
     jobs:
       - job: First_job
         steps:
-          - bash: echo $(1st_variable)
-          - bash:  echo $(2nd_variable)
-          - bash: echo $(3rd_variable)
+          - bash: echo $(variables.1st_variable)
+          - bash:  echo $(variables.2nd_variable)
+          - bash: echo $(variables.3rd_variable)
       - job: Secon_job
         steps:
           - bash: echo Second job in Build stage
