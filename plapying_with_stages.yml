@@ -20,6 +20,7 @@ stages:
         steps:
           - bash: echo Second job in Build stage
   - stage: Dev_deploy
+    dependsOn: Build
     jobs:
       - job: First_job
         steps:
@@ -28,6 +29,7 @@ stages:
         steps:
           - bash: echo Second job in Dev-deploy
   - stage: QA
+    dependsOn: Build
     jobs:
       - job: First_job
         steps:
