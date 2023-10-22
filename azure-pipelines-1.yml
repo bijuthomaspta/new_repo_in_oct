@@ -33,5 +33,5 @@ steps:
      inputs:
        command: 'apply'
        workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
-       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.securefilepath)'
+       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(name: publickey.securefilepath)'
        allowTelemetryCollection: true
