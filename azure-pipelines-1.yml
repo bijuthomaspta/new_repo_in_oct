@@ -10,18 +10,28 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-  - task: TerraformCLI@1
-    inputs:
-      command: 'init'
-      workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
-      backendType: 'azurerm'
-      backendServiceArm: 'AZ_Resource_manager_Connection'
-      backendAzureRmSubscriptionId: '791b1ef4-c42c-48cd-8077-973b173aeab8'
-      ensureBackend: true
-      backendAzureRmResourceGroupName: 'terraform-backend-rg'
-      backendAzureRmResourceGroupLocation: 'westeurope'
-      backendAzureRmStorageAccountName: 'storageaccoutabcd'
-      backendAzureRmContainerName: 'sstorageaccountcontainer'
-      backendAzureRmKey: 'kubernetess_dev.tfstate'
-      allowTelemetryCollection: true
-    
+   - task: TerraformCLI@1
+     inputs:
+       command: 'init'
+       workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
+       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.securefilepath)'
+       backendType: 'azurerm'
+       backendServiceArm: 'AZ_Resource_manager_Connection'
+       backendAzureRmSubscriptionId: '791b1ef4-c42c-48cd-8077-973b173aeab8'
+       ensureBackend: true
+       backendAzureRmResourceGroupName: 'terraform-backend-rg'
+       backendAzureRmResourceGroupLocation: 'westeurope'
+       backendAzureRmStorageAccountName: 'storageaccoutabcd'
+       backendAzureRmContainerName: 'sstorageaccountcontainer'
+       backendAzureRmKey: 'kubernetess_dev.tfstate'
+       allowTelemetryCollection: true
+   - task: DownloadSecureFile@1
+     name: publickey
+     inputs:
+      secureFile: 'azure_rsa.pub'
+   - task: TerraformCLI@1
+     inputs:
+       command: 'apply'
+       workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
+       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.securefilepath)'
+       allowTelemetryCollection: true
