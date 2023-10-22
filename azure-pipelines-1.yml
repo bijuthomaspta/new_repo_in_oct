@@ -12,6 +12,6 @@ pool:
 steps:
   - task: TerraformCLI@1
     inputs:
-      command: 'validate'
+      command: 'init'
       workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
       allowTelemetryCollection: true
