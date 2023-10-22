@@ -33,7 +33,7 @@ steps:
    
    - task: TerraformCLI@1
      inputs:
-       command: 'apply'
+       command: 'destroy'
        workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
        commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
        allowTelemetryCollection: true
