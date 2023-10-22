@@ -10,11 +10,16 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+
+   - task: DownloadSecureFile@1
+     name: publickey
+     inputs:
+      secureFile: 'azure_rsa.pub'
    - task: TerraformCLI@1
      inputs:
        command: 'init'
        workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
-       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.securefilepath)'
+       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(publickey.secureFilePath)'
        backendType: 'azurerm'
        backendServiceArm: 'AZ_Resource_manager_Connection'
        backendAzureRmSubscriptionId: '791b1ef4-c42c-48cd-8077-973b173aeab8'
@@ -25,13 +30,10 @@ steps:
        backendAzureRmContainerName: 'sstorageaccountcontainer'
        backendAzureRmKey: 'kubernetess_dev.tfstate'
        allowTelemetryCollection: true
-   - task: DownloadSecureFile@1
-     name: publickey
-     inputs:
-      secureFile: 'azure_rsa.pub'
+   
    - task: TerraformCLI@1
      inputs:
        command: 'apply'
        workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/azure/kubernetes/'
-       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(name: publickey.securefilepath)'
+       commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(name: publickey.secureFilePath)'
        allowTelemetryCollection: true
