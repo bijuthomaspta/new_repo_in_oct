@@ -23,7 +23,9 @@ resource "aws_default_vpc" "default" {
 #}
 
 
-data "aws_region" "selected" {}
+data "aws_region" "current" {}
+
+
 #provider "kubernetes" {
  # host                   = data.aws_eks_cluster.cluster.endpoint
  # cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
@@ -34,7 +36,7 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(module.my-cluster.cluster_certificate_authority_data)
   exec {
     api_version = "client.authentication.k8s.io/v1"
-    args        = ["eks", "get-token", "--cluster-name", module.my-cluster.cluster_id, "--region", data.aws_region.selected.name]
+    args        = ["eks", "get-token", "--cluster-name", module.my-cluster.cluster_id, "--region", data.aws_region.current.name]
     command     = "aws"
   }
 }
