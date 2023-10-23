@@ -21,9 +21,9 @@ resource "aws_default_vpc" "default" {
 
 
 
-module "in28minutes-cluster" {
+module "biju" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "in28minutes-cluster"
+  cluster_name    = "biju-cluster"
   #cluster_version = "~>1.14"
   subnet_ids       = ["subnet-0bfd3d382d079c9d8", "subnet-006dba2ac9fa506d3"] #CHANGE
   #subnets = data.aws_subnet_ids.subnets.ids
@@ -43,13 +43,13 @@ module "in28minutes-cluster" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.in28minutes-cluster.cluster_name
-  depends_on = [module.in28minutes-cluster.cluster_name]
+  name = module.biju.cluster_name
+  depends_on = [module.biju.cluster_name]
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  name = module.in28minutes-cluster.cluster_name
-  depends_on = [module.in28minutes-cluster.cluster_name]
+  name = module.biju.cluster_name
+  depends_on = [module.biju.cluster_name]
 }
 
 
