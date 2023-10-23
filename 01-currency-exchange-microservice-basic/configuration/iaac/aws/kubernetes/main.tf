@@ -31,7 +31,14 @@ data "aws_eks_cluster_auth" "cluster" {
  # cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
  # token                  = data.aws_eks_cluster_auth.cluster.token
 #}
-
+provider "kubernetes" {
+  experiments {
+    manifest_resource = true
+  }
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+}
 
 
 
@@ -52,14 +59,7 @@ module "my-cluster" {
       min_capacity  = 1
     }
   }
-provider "kubernetes" {
-  experiments {
-    manifest_resource = true
-  }
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-}
+
 }
 
 
@@ -87,3 +87,13 @@ resource "kubernetes_cluster_role_binding" "example" {
 provider "aws" {
   region  = "ap-south-1"
 }
+output "auth" {
+  value = data.aws_eks_cluster.cluster.certificate_authority.0.data
+}
+
+output "token" {
+  value =  data.aws_eks_cluster_auth.cluster.token
+}
+
+
+
