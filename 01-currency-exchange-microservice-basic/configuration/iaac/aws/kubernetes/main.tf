@@ -30,7 +30,7 @@ module "biju" {
   #vpc_id          = aws_default_vpc.default.id
 
   vpc_id         = "vpc-02b83871319ed6a24"
- # cluster_endpoint_public_access = true
+  cluster_endpoint_public_access = true
 
   eks_managed_node_group_defaults = {
     instance_types         = ["m6i.large", "m5.large", "m5n.large", "m5zn.large"]
