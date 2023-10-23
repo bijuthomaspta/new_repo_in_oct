@@ -47,11 +47,11 @@ module "in28minutes-cluster" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  id = module.in28minutes-cluster.cluster_id
+  name = module.in28minutes-cluster.cluster_name
 }
 
 data "aws_eks_cluster_auth" "cluster" {
-  id = module.in28minutes-cluster.cluster_id
+  name = module.in28minutes-cluster.cluster_name
 }
 
 
