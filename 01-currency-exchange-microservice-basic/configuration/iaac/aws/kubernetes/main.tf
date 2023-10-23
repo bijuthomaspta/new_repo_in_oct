@@ -61,11 +61,6 @@ module "my-cluster" {
   }
 
 }
-resource "kubernetes_config_map" "example" {
-  metadata {
-    name = "my-config"
-  }
-}
 
 
 # We will use ServiceAccount to connect to K8S Cluster in CI/CD mode
@@ -73,7 +68,7 @@ resource "kubernetes_config_map" "example" {
 # and services in default namespace
 resource "kubernetes_cluster_role_binding" "example" {
   metadata {
-    name = "fabric8-rbac"
+    name = "AdministratorAccess"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
