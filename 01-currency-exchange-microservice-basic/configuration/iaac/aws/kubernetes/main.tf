@@ -6,7 +6,7 @@ terraform {
   }
 }
 
-resource "aws_default_vpc" "default" {
+#resource "aws_default_vpc" "default" {
 
 }
 
@@ -47,9 +47,9 @@ module "my-cluster" {
   cluster_name    = "my-cluster_in_aws_eks"
 #   cluster_version = "1.14"
   subnet_ids = ["subnet-0bfd3d382d079c9d8", "subnet-006dba2ac9fa506d3"] 
-  vpc_id          = aws_default_vpc.default.id
+  #vpc_id          = aws_default_vpc.default.id
 
-  #vpc_id         = "vpc-1234556abcdef"
+  vpc_id         = "vpc-02b83871319ed6a24"
 
   eks_managed_node_groups = {
     one = {
