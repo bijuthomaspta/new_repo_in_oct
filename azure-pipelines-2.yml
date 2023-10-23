@@ -10,7 +10,7 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- bash: : ls -a $(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/
+- bash: : ls -a $((System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/)
   displayName: 'Run a one-line script'
 # - task: TerraformTaskV1@0
 #   inputs:
