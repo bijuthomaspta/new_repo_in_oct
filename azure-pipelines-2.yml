@@ -20,4 +20,8 @@ steps:
     backendServiceAWS: 'AWS_connection_for_terraform-user'
     backendAWSBucketName: 'terraform-backend-state-bijuthomas-123'
     backendAWSKey: 'kubernetes-dev.tfstate'
-  
+- task: TerraformTaskV4@4
+  inputs:
+    provider: 'aws'
+    command: 'apply'
+    environmentServiceNameAWS: 'AWS_connection_for_terraform-user'
