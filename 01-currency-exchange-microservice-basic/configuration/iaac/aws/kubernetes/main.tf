@@ -32,14 +32,13 @@ module "biju" {
   vpc_id         = "vpc-02b83871319ed6a24"
   cluster_endpoint_public_access = true
 
-    node_groups = [
-    {
+    node_groups = {
+    
       instance_type = "t2.micro"
       max_capacity  = 5
       desired_capacity = 3
       min_capacity  = 3
     }
-  ]
 }
 
 data "aws_eks_cluster" "cluster" {
