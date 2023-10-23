@@ -35,6 +35,7 @@ module "in28minutes-cluster" {
   #vpc_id          = aws_default_vpc.default.id
 
   vpc_id         = "vpc-02b83871319ed6a24"
+  cluster_endpoint_public_access = true
 
   eks_managed_node_group_defaults = [
     {
