@@ -72,7 +72,7 @@ provider "kubernetes" {
 # and services in default namespace
 resource "kubernetes_cluster_role_binding" "example" {
   metadata {
-    name = "fabric8-rbac"
+    name = "arn:aws:iam::aws:policy/AdministratorAccess"
   }
   role_ref {
     api_group = "rbac.authorization.k8s.io"
