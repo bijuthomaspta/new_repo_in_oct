@@ -32,7 +32,7 @@ module "biju" {
   vpc_id         = "vpc-02b83871319ed6a24"
   cluster_endpoint_public_access = true
 
-  eks_managed_node_group_defaults = [
+    node_groups = [
     {
       instance_type = "t2.micro"
       max_capacity  = 5
@@ -74,15 +74,10 @@ resource "kubernetes_cluster_role_binding" "example" {
     kind      = "ClusterRole"
     name      = "cluster-admin"
   }
-   subject {
+  subject {
     kind      = "ServiceAccount"
     name      = "default"
-    namespace = "kube-system"
-  }
-   subject {
-     kind      = "User"
-     name      = "admin"
-     api_group = "rbac.authorization.k8s.io"
+    namespace = "default"
   }
 }
 
