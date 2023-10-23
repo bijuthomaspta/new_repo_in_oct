@@ -61,6 +61,10 @@ module "my-cluster" {
   }
 
 }
+resource "kubernetes_config_map" "example" {
+  metadata {
+    name = "my-config"
+  }
 
 
 # We will use ServiceAccount to connect to K8S Cluster in CI/CD mode
