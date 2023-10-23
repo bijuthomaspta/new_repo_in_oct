@@ -31,14 +31,7 @@ data "aws_eks_cluster_auth" "cluster" {
  # cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
  # token                  = data.aws_eks_cluster_auth.cluster.token
 #}
-provider "kubernetes" {
-  experiments {
-    manifest_resource = true
-  }
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-}
+
 
 
 
@@ -59,8 +52,15 @@ module "my-cluster" {
       min_capacity  = 1
     }
   }
-
-
+provider "kubernetes" {
+  experiments {
+    manifest_resource = true
+  }
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+}
+}
 
 
 # We will use ServiceAccount to connect to K8S Cluster in CI/CD mode
@@ -81,7 +81,7 @@ resource "kubernetes_cluster_role_binding" "example" {
     namespace = "default"
   }
 }
-}
+
 
 # Needed to set the default region
 provider "aws" {
