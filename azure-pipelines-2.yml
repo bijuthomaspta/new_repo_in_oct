@@ -24,4 +24,5 @@ steps:
   inputs:
     provider: 'aws'
     command: 'apply'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/'
     environmentServiceNameAWS: 'AWS_connection_for_terraform-user'
