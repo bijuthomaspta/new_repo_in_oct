@@ -10,14 +10,14 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
-- script: echo Hello, world!
+- bash: : ls -a $(System.DefaultWorkingDirectory)01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/
   displayName: 'Run a one-line script'
-- task: TerraformTaskV1@0
-  inputs:
-    provider: 'aws'
-    command: 'init'
-    workingDirectory: '$(System.DefaultWorkingDirectory)01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/'
-    backendServiceAWS: 'AWS_connection_for_terraform-user'
-    backendAWSBucketName: 'terraform-backend-state-bijuthomas-123'
-    backendAWSKey: 'kubernetes-dev.tfstate'
+# - task: TerraformTaskV1@0
+#   inputs:
+#     provider: 'aws'
+#     command: 'init'
+#     workingDirectory: '$(System.DefaultWorkingDirectory)01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/'
+#     backendServiceAWS: 'AWS_connection_for_terraform-user'
+#     backendAWSBucketName: 'terraform-backend-state-bijuthomas-123'
+#     backendAWSKey: 'kubernetes-dev.tfstate'
   
