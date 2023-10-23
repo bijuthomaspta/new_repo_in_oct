@@ -45,7 +45,7 @@ provider "kubernetes" {
 module "my-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "my-cluster_in_aws_eks"
-#   cluster_version = "1.14"
+  cluster_version = "1.14"
   subnet_ids = ["subnet-0bfd3d382d079c9d8", "subnet-006dba2ac9fa506d3"] 
   #vpc_id          = aws_default_vpc.default.id
 
