@@ -36,7 +36,7 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(module.my-cluster.cluster_certificate_authority_data)
   exec {
     api_version = "client.authentication.k8s.io/v1"
-    args        = ["eks", "get-token", "--cluster-name", module.my-cluster.cluster_id, "--region", "ap-south-1"]
+    args        = ["eks", "get-token", "--cluster-name", module.my-cluster.cluster_name, "--region", "ap-south-1"]
     command     = "aws"
   }
 }
