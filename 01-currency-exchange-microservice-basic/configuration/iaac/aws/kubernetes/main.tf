@@ -23,7 +23,7 @@ resource "aws_default_vpc" "default" {
 
 module "biju" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "biju-cluster"
+  cluster_name    = "biju1-cluster"
   #cluster_version = "~>1.14"
   subnet_ids       = ["subnet-0bfd3d382d079c9d8", "subnet-006dba2ac9fa506d3"] #CHANGE
   #subnets = data.aws_subnet_ids.subnets.ids
