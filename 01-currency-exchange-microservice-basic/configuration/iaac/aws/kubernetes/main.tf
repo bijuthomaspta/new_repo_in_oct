@@ -14,13 +14,13 @@ resource "aws_default_vpc" "default" {
 #   vpc_id = aws_default_vpc.default.id
 # }
 
-#data "aws_eks_cluster" "cluster" { 
-#  name = module.my-cluster.cluster_name
-#}
+data "aws_eks_cluster" "cluster" { 
+  name = module.my-cluster.eks_cluster_id
+}
 
-#data "aws_eks_cluster_auth" "cluster" { 
- # name = module.my-cluster.cluster_name
-#}
+data "aws_eks_cluster_auth" "cluster" { 
+  name = module.my-cluster.eks_cluster_id
+}
 
 
 # data "aws_region" "current" {}
@@ -32,13 +32,12 @@ resource "aws_default_vpc" "default" {
  # token                  = data.aws_eks_cluster_auth.cluster.token
 #}
 provider "kubernetes" {
-  host                   = module.my-cluster.cluster_endpoint
-  cluster_ca_certificate = base64decode(module.my-cluster.cluster_certificate_authority_data)
-  exec {
-    api_version = "client.authentication.k8s.io/v1"
-    args        = ["eks", "get-token", "--cluster-name", module.my-cluster.cluster_name, "--region", "ap-south-1"]
-    command     = "aws"
+  experiments {
+    manifest_resource = true
   }
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
 }
 
 
