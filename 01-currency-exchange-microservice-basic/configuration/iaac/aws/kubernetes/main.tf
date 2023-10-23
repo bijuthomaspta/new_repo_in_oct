@@ -72,6 +72,11 @@ resource "kubernetes_cluster_role_binding" "example" {
     name      = "default"
     namespace = "kube-system"
   }
+   subject {
+     kind      = "User"
+     name      = "admin"
+     api_group = "rbac.authorization.k8s.io"
+  }
 }
 
 # Needed to set the default region
