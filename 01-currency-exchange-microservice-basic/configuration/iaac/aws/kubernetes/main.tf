@@ -89,10 +89,14 @@ provider "aws" {
 }
 output "auth" {
   value = data.aws_eks_cluster.cluster.certificate_authority.0.data
+  sensitive = true
+
 }
 
 output "token" {
   value =  data.aws_eks_cluster_auth.cluster.token
+  sensitive = true
+
 }
 
 
