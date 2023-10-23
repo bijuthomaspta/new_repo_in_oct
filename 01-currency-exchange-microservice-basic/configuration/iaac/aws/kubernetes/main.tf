@@ -59,7 +59,7 @@ module "my-cluster" {
       min_capacity  = 1
     }
   }
-}
+
 
 
 
@@ -80,6 +80,7 @@ resource "kubernetes_cluster_role_binding" "example" {
     name      = "default"
     namespace = "default"
   }
+}
 }
 
 # Needed to set the default region
