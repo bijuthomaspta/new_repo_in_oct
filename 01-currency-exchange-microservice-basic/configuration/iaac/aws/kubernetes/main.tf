@@ -67,10 +67,10 @@ resource "kubernetes_cluster_role_binding" "example" {
     kind      = "ClusterRole"
     name      = "cluster-admin"
   }
-  subject {
+   subject {
     kind      = "ServiceAccount"
     name      = "default"
-    namespace = "default"
+    namespace = "kube-system"
   }
 }
 
