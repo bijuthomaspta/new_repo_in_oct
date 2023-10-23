@@ -19,12 +19,7 @@ resource "aws_default_vpc" "default" {
 
 
 
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  token                  = data.aws_eks_cluster_auth.cluster.token
-  #version                = "~> 19.0"
-}
+
 
 module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
@@ -53,6 +48,15 @@ data "aws_eks_cluster" "cluster" {
 
 data "aws_eks_cluster_auth" "cluster" {
   name = module.in28minutes-cluster.cluster_name
+}
+
+
+
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token                  = data.aws_eks_cluster_auth.cluster.token
+  #version                = "~> 19.0"
 }
 
 
