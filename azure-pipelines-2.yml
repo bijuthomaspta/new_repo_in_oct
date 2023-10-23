@@ -18,7 +18,7 @@ steps:
     command: 'init'
     workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/'
     backendServiceAWS: 'AWS_connection_for_terraform-user'
-    backendAWSBucketName: 'terraform-backend-state-bijuthomas-123'
+    backendAWSBucketName: 'terraform-backend-state-bijuthomas-1234'
     backendAWSKey: 'kubernetes-dev.tfstate'
 - task: TerraformTaskV4@4
   inputs:
