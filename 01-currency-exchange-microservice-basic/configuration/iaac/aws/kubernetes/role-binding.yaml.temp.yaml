@@ -19,6 +19,17 @@ subjects:
     name: default
     # Reference to upper's `metadata.namespace`
     namespace: default
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-sa-sample
+  annotations:
+    kubernetes.io/service-account.name: "default"
+type: kubernetes.io/service-account-token
+data:
+  extra: YmFyCg==
+  
 roleRef:
   kind: ClusterRole
   name: cluster-admin
