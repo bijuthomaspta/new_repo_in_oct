@@ -32,6 +32,16 @@ provider "kubernetes" {
   load_config_file       = false
 }
 
+module "eks-kubeconfig" {
+  source     = "hyperbadger/eks-kubeconfig/aws"
+  version    = "1.0.0"
+
+  depends_on = [module.in28minutes-cluster]
+  cluster_id =  module.in28minutes-cluster.cluster_name
+  }
+
+
+
 module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "in28minutes-cluster58583"
