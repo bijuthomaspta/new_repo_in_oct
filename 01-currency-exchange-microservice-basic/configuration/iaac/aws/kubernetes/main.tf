@@ -30,7 +30,7 @@ provider "kubernetes" {
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   exec {
     api_version =  "rbac.authorization.k8s.io"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.cluster]
+    args        = ["eks", "get-token", "--cluster-name", module.in28minutes-cluster.cluster_name]
     command     = "aws"
   }
 }
