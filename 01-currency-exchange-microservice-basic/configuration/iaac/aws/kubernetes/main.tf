@@ -29,13 +29,11 @@ provider "kubernetes" {
   host                   = data.aws_eks_cluster.cluster.endpoint
   cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
   token                  = data.aws_eks_cluster_auth.cluster.token
-  version                = "~> 2.12"
 }
 
 module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "in28minutes-cluster58583"
-  cluster_version = "1.14"
   #subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
   subnet_ids = data.aws_subnets.subnets.ids
   vpc_id          = aws_default_vpc.default.id
