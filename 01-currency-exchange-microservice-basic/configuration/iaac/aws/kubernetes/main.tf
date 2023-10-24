@@ -17,7 +17,7 @@ resource "aws_default_vpc" "default" {
 
 }
 
-data "aws_subnet_ids" "subnets" {
+data "aws_subnets" "subnets" {
   vpc_id = aws_default_vpc.default.id
 }
 
@@ -33,7 +33,7 @@ module "in28minutes-cluster" {
   cluster_name    = "in28minutes-cluster"
   cluster_version = "1.14"
   #subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
-  subnet_ids = data.aws_subnet_ids.subnets.ids
+  subnet_ids = data.aws_subnets.subnets.ids
   vpc_id          = aws_default_vpc.default.id
 
   #vpc_id         = "vpc-1234556abcdef"
