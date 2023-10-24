@@ -33,19 +33,19 @@ module "in28minutes-cluster" {
   cluster_name    = "in28minutes-cluster"
   cluster_version = "1.14"
   #subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
-  subnets_ids = data.aws_subnet_ids.subnets.ids
+  subnet_ids = data.aws_subnet_ids.subnets.ids
   vpc_id          = aws_default_vpc.default.id
 
   #vpc_id         = "vpc-1234556abcdef"
 
-  node_groups = [
-    {
+   eks_managed_node_groups = {
+    one = {
       instance_type = "t2.micro"
       max_capacity  = 5
       desired_capacity = 3
       min_capacity  = 3
     }
-  ]
+  }
 }
 
 data "aws_eks_cluster" "cluster" {
