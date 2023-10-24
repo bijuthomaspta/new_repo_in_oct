@@ -17,9 +17,13 @@ resource "aws_default_vpc" "default" {
 
 }
 
-data "aws_subnets" "subnets" {
-  vpc_id = aws_default_vpc.default.id
+data "aws_subnets" "example" {
+  filter {
+    name   = "vpc-id"
+    values = [aws_default_vpc.default.id]
+  }
 }
+
 
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.cluster.endpoint
