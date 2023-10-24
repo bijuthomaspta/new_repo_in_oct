@@ -24,13 +24,6 @@ data "aws_subnets" "subnets" {
   }
 }
 
-
-provider "kubernetes" {
-  host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
-  token = data.aws_eks_cluster_auth.cluster1.token
-}
-
 module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = "in28minutes-cluster58583"
@@ -51,14 +44,20 @@ module "in28minutes-cluster" {
 }
 
 data "aws_eks_cluster" "cluster" {
-  name = module.in28minutes-cluster.cluster_name
+  name = module.in28minutes-cluster.cluster_id
   depends_on = [module.in28minutes-cluster.name]
 }
 
 
 data "aws_eks_cluster_auth" "cluster1" {
-  name = module.in28minutes-cluster.cluster_name
+  name = module.in28minutes-cluster.cluster_id
   depends_on = [module.in28minutes-cluster.name]
+}
+
+provider "kubernetes" {
+  host                   = data.aws_eks_cluster.cluster.endpoint
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  token = data.aws_eks_cluster_auth.cluster1.token
 }
 
 
