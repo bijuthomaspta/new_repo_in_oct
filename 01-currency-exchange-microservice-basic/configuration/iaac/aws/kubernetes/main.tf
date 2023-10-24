@@ -32,7 +32,7 @@ module "in28minutes-cluster" {
   vpc_id          = aws_default_vpc.default.id
 
   #vpc_id         = "vpc-1234556abcdef"
-  cluster_endpoint_public_access = true
+  #cluster_endpoint_public_access = true
    eks_managed_node_groups = {
     one = {
       instance_type = "t2.micro"
