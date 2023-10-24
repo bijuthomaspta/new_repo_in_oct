@@ -30,10 +30,10 @@ module "in28minutes-cluster" {
   #subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
   subnet_ids = data.aws_subnets.subnets.ids
   vpc_id          = aws_default_vpc.default.id
-  cluster_endpoint_public_access  = true
+
 
   #vpc_id         = "vpc-1234556abcdef"
-  #cluster_endpoint_public_access = true
+  cluster_endpoint_public_access = true
    eks_managed_node_groups = {
     one = {
       instance_type = "t2.micro"
@@ -57,7 +57,7 @@ data "aws_eks_cluster_auth" "cluster1" {
 
 provider "kubernetes" {
   host                   = data.aws_eks_cluster.cluster.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority.0.data)
+  cluster_ca_certificate = base64decode(data.aws_eks_cluster.cluster.certificate_authority[0].data)
   token = data.aws_eks_cluster_auth.cluster1.token
 }
 
