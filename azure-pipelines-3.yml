@@ -16,5 +16,5 @@ steps:
     connectionType: 'kubernetesServiceConnection'
     kubernetesServiceConnection: 'Kubernetes_connection'
     namespace: 'default'
-    manifests: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/kubernetes/'
+    manifests: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/kubernetes/deployment.yaml'
     containers: 'in28min/hello-world-java:0.0.2.RELEASE'
