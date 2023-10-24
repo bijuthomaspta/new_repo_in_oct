@@ -23,6 +23,6 @@ steps:
 - task: TerraformTaskV4@4
   inputs:
     provider: 'aws'
-    command: 'apply'
+    command: 'destroy'
     workingDirectory: '$(System.DefaultWorkingDirectory)/01-currency-exchange-microservice-basic/configuration/iaac/aws/kubernetes/'
     environmentServiceNameAWS: 'AWS_connection_for_terraform-user'
