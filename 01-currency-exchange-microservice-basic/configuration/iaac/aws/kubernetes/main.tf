@@ -30,6 +30,7 @@ module "in28minutes-cluster" {
   #subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
   subnet_ids = data.aws_subnets.subnets.ids
   vpc_id          = aws_default_vpc.default.id
+  cluster_endpoint_public_access  = true
 
   #vpc_id         = "vpc-1234556abcdef"
   #cluster_endpoint_public_access = true
