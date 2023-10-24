@@ -26,7 +26,7 @@ data "aws_subnets" "subnets" {
 
 module "in28minutes-cluster" {
   source          = "terraform-aws-modules/eks/aws"
-  cluster_name    = "in28minutes-cluster585"
+  cluster_name    = "in28minutes-cluster5856666"
   cluster_version = "1.23"
   #subnets         = ["subnet-3f7b2563", "subnet-4a7d6a45"] #CHANGE
   subnet_ids = data.aws_subnets.subnets.ids
