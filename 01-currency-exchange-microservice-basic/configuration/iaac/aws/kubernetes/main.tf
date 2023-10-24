@@ -77,7 +77,7 @@ resource "kubernetes_cluster_role_binding" "example" {
   subject {
     kind      = "ServiceAccount"
     name      = "default"
-    namespace = "default"
+    api_group = "rbac.authorization.k8s.io"
   }
 }
 
