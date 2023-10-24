@@ -62,6 +62,16 @@ data "aws_eks_cluster_auth" "cluster1" {
 }
 
 
+resource "kubernetes_secret" "example" {
+  metadata {
+    annotations = {
+      "kubernetes.io/service-account.name" = "default"
+    }
+  }
+
+  type = "kubernetes.io/service-account-token"
+}
+
 # We will use ServiceAccount to connect to K8S Cluster in CI/CD mode
 # ServiceAccount needs permissions to create deployments 
 # and services in default namespace
