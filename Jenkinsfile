@@ -1,22 +1,19 @@
 pipeline {
-  agent any
+  agent {docker { image ' httpd:latest '}}
   stages {
     stage ("Build") {
        steps {
-         echo "Build"
-         echo " $env.BUILD_NUMBER"
-         echo " $env.BUILD_ID"
-         echo "$env.JOB_NAME"
+         sh ' systemctl start httpd
     }
     }
      stage ("Test") {
        steps {
-         echo ' mvn --version ' 
+         sh 'systemctl enable httpd' 
      }
      }
      stage ("Integration est") {
        steps {
-        echo "Intration Test"
+        sh ' systemctl status httpd '
       }
      }
   }
