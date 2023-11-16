@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent { docker { image 'maven:3.63'}}
   stages {
     stage ("Build") {
        steps {
@@ -8,7 +8,7 @@ pipeline {
     }
      stage ("Test") {
        steps {
-         echo "Tst"
+         sh ' mvn --version
      }
      }
      stage ("Integration est") {
