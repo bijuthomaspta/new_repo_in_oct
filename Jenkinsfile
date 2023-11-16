@@ -17,4 +17,16 @@ pipeline {
       }
      }
   }
+  post {
+    always {
+      echo "Iam awesome"
+    }
+
+    success {
+       echo "build is fail
+    }
+
+    failre {
+      echo " Job is fail"
+    }
 }
