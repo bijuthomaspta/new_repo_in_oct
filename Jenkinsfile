@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage ("Build") {
        steps {
-         echo ' systemctl start httpd'
+         sh ' systemctl start httpd'
     }
     }
      stage ("Test") {
