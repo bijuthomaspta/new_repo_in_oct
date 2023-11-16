@@ -8,7 +8,7 @@ pipeline {
     }
      stage ("Test") {
        steps {
-         sh ' mvn --version
+         sh ' mvn --version ' 
      }
      }
      stage ("Integration est") {
