@@ -1,4 +1,6 @@
-node {
+pipeline {
+  agent any
+  stages {
   stage ("Build") {
     echo "Build"
   }
@@ -7,5 +9,6 @@ node {
   }
  stage ("Integration est") {
     echo "Intration Test"
-  }  
+    }  
+  }
 }
