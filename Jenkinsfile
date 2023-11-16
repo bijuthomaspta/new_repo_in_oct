@@ -26,7 +26,7 @@ pipeline {
        echo "build is fail"
     }
 
-    failre {
+    failure {
       echo " Job is fail"
     }
     }
