@@ -3,17 +3,17 @@ pipeline {
   stages {
     stage ("Build") {
        steps {
-         // sh ' systemctl start httpd'
+         echo ' systemctl start httpd'
     }
     }
      stage ("Test") {
        steps {
-         // sh 'systemctl enable httpd' 
+          echo 'systemctl enable httpd' 
      }
      }
      stage ("Integration est") {
        steps {
-        // sh ' systemctl status httpd '
+          echo sh ' systemctl status httpd '
       }
      }
   }
