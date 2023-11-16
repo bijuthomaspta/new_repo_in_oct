@@ -5,7 +5,7 @@ node {
    stage ("Test") {
     echo "Tst"
   }
- stage ("Integration Test") {
+ stage ("Integration est") {
     echo "Intration Test"
   }  
 }
