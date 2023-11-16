@@ -29,4 +29,5 @@ pipeline {
     failre {
       echo " Job is fail"
     }
+    }
 }
