@@ -1,9 +1,11 @@
 pipeline {
-  agent { docker { image 'maven:3.9-amazoncorretto-8-al2023'}}
   stages {
     stage ("Build") {
        steps {
          echo "Build"
+         echo " $env.BUILD_NUMBER"
+         echo " $env.BUILD_ID"
+         echo "$env.JOB_NAME"
     }
     }
      stage ("Test") {
