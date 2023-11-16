@@ -1,5 +1,6 @@
 pipeline {
-  agent { docker { image ' httpd:latest '}}
+  agent any
+  // agent { docker { image ' httpd:latest '}}
   stages {
     stage ("Build") {
        steps {
