@@ -3,7 +3,7 @@ node {
     echo "Build"
   }
    stage ("Test") {
-    echo "Test"
+    echo "Tst"
   }
  stage ("Integration Test") {
     echo "Integration Test"
