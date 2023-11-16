@@ -13,7 +13,7 @@ pipeline {
      }
      stage ("Integration est") {
        steps {
-          echo sh ' systemctl status httpd '
+          echo  ' systemctl status httpd '
       }
      }
   }
