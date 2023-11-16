@@ -8,12 +8,12 @@ pipeline {
     }
      stage ("Test") {
        steps {
-          echo 'systemctl enable httpd' 
+          echo '$systemctl enable httpd' 
      }
      }
      stage ("Integration est") {
        steps {
-          echo  ' systemctl status httpd '
+          echo  '$systemctl status httpd '
       }
      }
   }
