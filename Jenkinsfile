@@ -3,27 +3,27 @@ pipeline {
   stages {
     stage ("Build") {
        steps {
-         sh ' systemctl start httpd'
+         // sh ' systemctl start httpd'
     }
     }
      stage ("Test") {
        steps {
-         sh 'systemctl enable httpd' 
+         // sh 'systemctl enable httpd' 
      }
      }
      stage ("Integration est") {
        steps {
-        sh ' systemctl status httpd '
+        // sh ' systemctl status httpd '
       }
      }
   }
   post {
     always {
-      echo "Iam awesome"
+      echo "I am awesome"
     }
 
     success {
-       echo "build is fail"
+       echo "build is Success"
     }
 
     failure {
