@@ -8,62 +8,12 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
+steps:
+  
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(system.DefaultworkingDirectory)'
+    Contents: '****/*yaml'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+- bash: ls -R $(Build.ArtifactStagingDirectory)
 
-stages:
-  - stage: Build
-    jobs:
-    - job: job1
-      steps:
-         - script: echo job1
-           displayName: Run online script
-    - job: job2
-      dependsOn: job1
-      steps:
-        - script: echo job 2
-          displayName: Run online script
-  - stage: dev_deploy
-    jobs:
-    - job: job1
-      steps:
-         - script: echo job1
-           displayName: Run online script
-    - job: job2
-      dependsOn: job1
-      steps:
-        - script: echo job 2
-          displayName: Run online script
-  - stage: QA_deploy
-    dependsOn: dev_deploy
-    jobs:
-    - job: job1
-      steps:
-         - script: echo job1
-           displayName: Run online script
-    - job: job2
-      dependsOn: job1
-      steps:
-        - script: echo job 2
-          displayName: Run online script
-  - stage: Build222
-    jobs:
-    - job: job1
-      steps:
-         - script: echo job1
-           displayName: Run online script
-    - job: job2
-      dependsOn: job1
-      steps:
-        - script: echo job 2
-          displayName: Run online script  
-  - stage: prod_deploy
-    dependsOn: Build
-    jobs:
-    - job: job1
-      steps:
-         - script: echo job1
-           displayName: Run online script
-    - job: job2
-      dependsOn: job1
-      steps:
-        - script: echo job 2
-          displayName: Run online script 
