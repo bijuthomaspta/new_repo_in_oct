@@ -5,9 +5,15 @@
 
 trigger:
 - main
+strategy:
+ matrix:
+   linux:
+     os: 'ubuntu-latest'
+   mac:
+      os: 'macos-latest'
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: $(os)
 steps:
   
 - task: CopyFiles@2
