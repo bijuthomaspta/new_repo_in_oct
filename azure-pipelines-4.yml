@@ -31,4 +31,4 @@ stages:
          runOnce:
            deploy:
              steps:
-               - script: deploy to qa
+               - script: deploy to qaa
