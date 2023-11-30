@@ -14,18 +14,18 @@ stages:
       - job: job1
         steps:
         - bash: echo "Do the build"
-  - stage: Dev deploy job
+  - stage: Dev_deploy
     jobs:
-      - deployment: Dev deploy job
+      - deployment: Dev_deploy_job
         environment: Dev
         strategy:
          runOnce:
            deploy:
              steps:
                - script: deploy to dev
-  - stage: Qa deploy job
+  - stage: Qa_deploy
     jobs:
-      - deployment: Dev deploy job
+      - deployment: Dev_deploy_job
         environment: Qa
         strategy:
          runOnce:
