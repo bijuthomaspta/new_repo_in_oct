@@ -5,25 +5,30 @@
 
 trigger:
 - main
-strategy:
- matrix:
-   linux:
-     os: 'ubuntu-latest'
-   mac:
-      os: 'macos-latest'
 
 pool:
-  vmImage: $(os)
-steps:
-  
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(system.DefaultworkingDirectory)'
-    Contents: '****/*yaml'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-- bash: ls -R $(Build.ArtifactStagingDirectory)
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'manifest'
-    publishLocation: 'Container'
+  vmImage: 'ubuntu-latest'
+stages:
+  - stage: Build
+    jobs: 
+      - job: job1
+        steps:
+        - bash: echo "Do the build"
+  - stage: Dev deploy job
+    jobs:
+      - deployment: Dev deploy job
+        environment: Dev
+        strategy:
+         runOnce:
+           deploy:
+             steps:
+               - script: deploy to dev
+  - stage: Qa deploy job
+    jobs:
+      - deployment: Dev deploy job
+        environment: Qa
+        strategy:
+         runOnce:
+           deploy:
+             steps:
+               - script: deploy to qa
